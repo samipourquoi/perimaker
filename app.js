@@ -3,6 +3,8 @@ function $(element) {
 	return document.getElementById(element);
 }
 
+const map = $("map");
+
 let scale = 1;
 let xOffset = 0;
 let yOffset = 0;
@@ -33,7 +35,6 @@ class Grid {
 }
 
 function setup() {
-	const map = $("map");
 	const ctx = map.getContext("2d");
 
 	// Sets the canvas to fit the whole page (can't do that via CSS)
@@ -77,5 +78,11 @@ function setup() {
 
 	grid.draw();
 }
+
+window.onresize = () => {
+	map.width = window.innerWidth;
+	map.height = window.innerHeight;
+	grid.draw();
+};
 
 setup();
